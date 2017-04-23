@@ -22,7 +22,10 @@ namespace WhiteTile
         PictureBox white3 = new PictureBox();
         PictureBox black = new PictureBox();
         PictureBox green = new PictureBox();
+        int с;
         int n;
+        int x;
+        int y;
 
         public Form1()
         {
@@ -35,29 +38,31 @@ namespace WhiteTile
          
         }
 
-        public void Box(int n)
+        public void Box(int с, int n)
         {
-            switch(n)
+            textBox1.Text = n.ToString();
+            switch (с)
             {
+
                 case 1:
                     white.Size = new Size(100, 200);
                     white.Image = Image.FromFile("white1.jpg");              
-                    white.Location = new Point(100, 200);
+                    white.Location = new Point(100, -200 + n);
                     Controls.Add(white);
 
                     white2.Size = new Size(100, 200);
                     white2.Image = Image.FromFile("white1.jpg");
-                    white2.Location = new Point(200, 200);
+                    white2.Location = new Point(200, -200 + n);
                     Controls.Add(white2);
 
                     white3.Size = new Size(100, 200);
                     white3.Image = Image.FromFile("white1.jpg");
-                    white3.Location = new Point(300, 200);
+                    white3.Location = new Point(300, -200 + n);
                     Controls.Add(white3);
 
                     black.Size = new Size(100, 200);
                     black.Image = Image.FromFile("black.jpg");
-                    black.Location = new Point(400, 200);
+                    black.Location = new Point(400, -200 + n);
                     Controls.Add(black);
 
                     break;
@@ -66,22 +71,22 @@ namespace WhiteTile
                 case 2:
                     white.Size = new Size(100, 200);
                     white.Image = Image.FromFile("white1.jpg");
-                    white.Location = new Point(100, 200);
+                    white.Location = new Point(100, -200 + n);
                     Controls.Add(white);
 
                     white2.Size = new Size(100, 200);
                     white2.Image = Image.FromFile("white1.jpg");
-                    white2.Location = new Point(200, 200);
+                    white2.Location = new Point(200, -200 + n);
                     Controls.Add(white2);
 
                     white3.Size = new Size(100, 200);
                     white3.Image = Image.FromFile("white1.jpg");
-                    white3.Location = new Point(400, 200);
+                    white3.Location = new Point(400, -200 + n);
                     Controls.Add(white3);
 
                     black.Size = new Size(100, 200);
                     black.Image = Image.FromFile("black.jpg");
-                    black.Location = new Point(300, 200);
+                    black.Location = new Point(300, -200 + n);
                     Controls.Add(black);
 
                     break;
@@ -90,22 +95,22 @@ namespace WhiteTile
                 case 3:
                     white.Size = new Size(100, 200);
                     white.Image = Image.FromFile("white1.jpg");
-                    white.Location = new Point(100, 200);
+                    white.Location = new Point(100, -200 + n);
                     Controls.Add(white);
 
                     white2.Size = new Size(100, 200);
                     white2.Image = Image.FromFile("white1.jpg");
-                    white2.Location = new Point(400, 200);
+                    white2.Location = new Point(400, -200 + n);
                     Controls.Add(white2);
 
                     white3.Size = new Size(100, 200);
                     white3.Image = Image.FromFile("white1.jpg");
-                    white3.Location = new Point(300, 200);
+                    white3.Location = new Point(300, -200 + n);
                     Controls.Add(white3);
 
                     black.Size = new Size(100, 200);
                     black.Image = Image.FromFile("black.jpg");
-                    black.Location = new Point(200, 200);
+                    black.Location = new Point(200, -200 + n);
                     Controls.Add(black);
 
                     break;
@@ -113,22 +118,22 @@ namespace WhiteTile
                 case 4:
                     white.Size = new Size(100, 200);
                     white.Image = Image.FromFile("white1.jpg");
-                    white.Location = new Point(400, 200);
+                    white.Location = new Point(400, -200 + n);
                     Controls.Add(white);
 
                     white2.Size = new Size(100, 200);
                     white2.Image = Image.FromFile("white1.jpg");
-                    white2.Location = new Point(200, 200);
+                    white2.Location = new Point(200, -200 + n);
                     Controls.Add(white2);
 
                     white3.Size = new Size(100, 200);
                     white3.Image = Image.FromFile("white1.jpg");
-                    white3.Location = new Point(300, 200);
+                    white3.Location = new Point(300, -200 + n);
                     Controls.Add(white3);
 
                     black.Size = new Size(100, 200);
                     black.Image = Image.FromFile("black.jpg");
-                    black.Location = new Point(100, 200);
+                    black.Location = new Point(100, -200 + n);
                     Controls.Add(black);
 
                     break;
@@ -177,28 +182,37 @@ namespace WhiteTile
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            Random c1 = new Random();
+            int c;
+            c = c1.Next(0, 5);
+            Box(c, n);
+            n=n+100;
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            n = 1;
-            Box(n);
+            с = 1;
+            Box(с,n);
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            n = 2;
-            Box(n);
+            timer1.Enabled = true;
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            n = 3;
-            Box(n);
+            с = 3;
+            Box(с,n);
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            n = 4;
-            Box(n);
+            с = 4;
+            Box(с,n);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
