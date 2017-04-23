@@ -17,15 +17,17 @@ namespace WhiteTile
         //Bitmap btm;
         //public Graphics g;
         
-        PictureBox white = new PictureBox();
-        PictureBox white2 = new PictureBox();
-        PictureBox white3 = new PictureBox();
-        PictureBox black = new PictureBox();
+        PictureBox[] white = new PictureBox[8];
+        PictureBox[] white2 = new PictureBox[8];
+        PictureBox[] white3 = new PictureBox[8];
+        PictureBox[] black = new PictureBox[8];
         PictureBox green = new PictureBox();
-        int с;
+        int c;
         int n;
         int x;
-        int y;
+        int[] y= new int[12];
+       
+        int i;
 
         public Form1()
         {
@@ -38,31 +40,143 @@ namespace WhiteTile
          
         }
 
-        public void Box(int с, int n)
+        public void Box2(int c, int i)
+        {
+            y[i] = -200;
+            textBox1.Text = n.ToString();
+            textBox2.Text = c.ToString();
+            switch (c)
+            {
+
+                case 1:
+                    white[i].Size = new Size(100, 200);
+                    white[i].Image = Image.FromFile("white1.jpg");              
+                    white[i].Location = new Point(100, y[i]);
+                    Controls.Add(white[i]);
+
+                    white2[i].Size = new Size(100, 200);
+                    white2[i].Image = Image.FromFile("white1.jpg");
+                    white2[i].Location = new Point(200, y[i]);
+                    Controls.Add(white2[i]);
+
+                    white3[i].Size = new Size(100, 200);
+                    white3[i].Image = Image.FromFile("white1.jpg");
+                    white3[i].Location = new Point(300, y[i]);
+                    Controls.Add(white3[i]);
+
+                    black[i].Size = new Size(100, 200);
+                    black[i].Image = Image.FromFile("black.jpg");
+                    black[i].Location = new Point(400, y[i]);
+                    Controls.Add(black[i]);
+
+                    break;
+
+
+                case 2:
+                    white[i].Size = new Size(100, 200);
+                    white[i].Image = Image.FromFile("white1.jpg");
+                    white[i].Location = new Point(100, y[i]);
+                    Controls.Add(white[i]);
+
+                    white2[i].Size = new Size(100, 200);
+                    white2[i].Image = Image.FromFile("white1.jpg");
+                    white2[i].Location = new Point(200, y[i]);
+                    Controls.Add(white2[i]);
+
+                    white3[i].Size = new Size(100, 200);
+                    white3[i].Image = Image.FromFile("white1.jpg");
+                    white3[i].Location = new Point(400, y[i]);
+                    Controls.Add(white3[i]);
+
+                    black[i].Size = new Size(100, 200);
+                    black[i].Image = Image.FromFile("black.jpg");
+                    black[i].Location = new Point(300, y[i]);
+                    Controls.Add(black[i]);
+
+                    break;
+
+
+                case 3:
+                    white[i].Size = new Size(100, 200);
+                    white[i].Image = Image.FromFile("white1.jpg");
+                    white[i].Location = new Point(100, y[i]);
+                    Controls.Add(white[i]);
+
+                    white2[i].Size = new Size(100, 200);
+                    white2[i].Image = Image.FromFile("white1.jpg");
+                    white2[i].Location = new Point(400, y[i]);
+                    Controls.Add(white2[i]);
+
+                    white3[i].Size = new Size(100, 200);
+                    white3[i].Image = Image.FromFile("white1.jpg");
+                    white3[i].Location = new Point(300, y[i]);
+                    Controls.Add(white3[i]);
+
+                    black[i].Size = new Size(100, 200);
+                    black[i].Image = Image.FromFile("black.jpg");
+                    black[i].Location = new Point(200, y[i]);
+                    Controls.Add(black[i]);
+
+                    break;
+
+                case 4:
+                    white[i].Size = new Size(100, 200);
+                    white[i].Image = Image.FromFile("white1.jpg");
+                    white[i].Location = new Point(400, y[i]);
+                    Controls.Add(white[i]);
+
+                    white2[i].Size = new Size(100, 200);
+                    white2[i].Image = Image.FromFile("white1.jpg");
+                    white2[i].Location = new Point(200, y[i]);
+                    Controls.Add(white2[i]);
+
+                    white3[i].Size = new Size(100, 200);
+                    white3[i].Image = Image.FromFile("white1.jpg");
+                    white3[i].Location = new Point(300, y[i]);
+                    Controls.Add(white3[i]);
+
+                    black[i].Size = new Size(100, 200);
+                    black[i].Image = Image.FromFile("black.jpg");
+                    black[i].Location = new Point(100, y[i]);
+                    Controls.Add(black[i]);
+
+                    break;
+
+
+            }
+
+        }
+
+
+
+
+        /*
+        public void Box(int c, int n, int i)
         {
             textBox1.Text = n.ToString();
-            switch (с)
+            textBox2.Text = c.ToString();
+            switch (c)
             {
 
                 case 1:
                     white.Size = new Size(100, 200);
-                    white.Image = Image.FromFile("white1.jpg");              
-                    white.Location = new Point(100, -200 + n);
+                    white.Image = Image.FromFile("white1.jpg");
+                    white.Location = new Point(100, -200 + n - black.Height * i);
                     Controls.Add(white);
 
                     white2.Size = new Size(100, 200);
                     white2.Image = Image.FromFile("white1.jpg");
-                    white2.Location = new Point(200, -200 + n);
+                    white2.Location = new Point(200, -200 + n - black.Height * i);
                     Controls.Add(white2);
 
                     white3.Size = new Size(100, 200);
                     white3.Image = Image.FromFile("white1.jpg");
-                    white3.Location = new Point(300, -200 + n);
+                    white3.Location = new Point(300, -200 + n - black.Height * i);
                     Controls.Add(white3);
 
                     black.Size = new Size(100, 200);
                     black.Image = Image.FromFile("black.jpg");
-                    black.Location = new Point(400, -200 + n);
+                    black.Location = new Point(400, -200 + n - black.Height * i);
                     Controls.Add(black);
 
                     break;
@@ -71,22 +185,22 @@ namespace WhiteTile
                 case 2:
                     white.Size = new Size(100, 200);
                     white.Image = Image.FromFile("white1.jpg");
-                    white.Location = new Point(100, -200 + n);
+                    white.Location = new Point(100, -200 + n - black.Height * i);
                     Controls.Add(white);
 
                     white2.Size = new Size(100, 200);
                     white2.Image = Image.FromFile("white1.jpg");
-                    white2.Location = new Point(200, -200 + n);
+                    white2.Location = new Point(200, -200 + n - black.Height * i);
                     Controls.Add(white2);
 
                     white3.Size = new Size(100, 200);
                     white3.Image = Image.FromFile("white1.jpg");
-                    white3.Location = new Point(400, -200 + n);
+                    white3.Location = new Point(400, -200 + n - black.Height * i);
                     Controls.Add(white3);
 
                     black.Size = new Size(100, 200);
                     black.Image = Image.FromFile("black.jpg");
-                    black.Location = new Point(300, -200 + n);
+                    black.Location = new Point(300, -200 + n - black.Height * i);
                     Controls.Add(black);
 
                     break;
@@ -95,22 +209,22 @@ namespace WhiteTile
                 case 3:
                     white.Size = new Size(100, 200);
                     white.Image = Image.FromFile("white1.jpg");
-                    white.Location = new Point(100, -200 + n);
+                    white.Location = new Point(100, -200 + n - black.Height * i);
                     Controls.Add(white);
 
                     white2.Size = new Size(100, 200);
                     white2.Image = Image.FromFile("white1.jpg");
-                    white2.Location = new Point(400, -200 + n);
+                    white2.Location = new Point(400, -200 + n - black.Height * i);
                     Controls.Add(white2);
 
                     white3.Size = new Size(100, 200);
                     white3.Image = Image.FromFile("white1.jpg");
-                    white3.Location = new Point(300, -200 + n);
+                    white3.Location = new Point(300, -200 + n - black.Height * i);
                     Controls.Add(white3);
 
                     black.Size = new Size(100, 200);
                     black.Image = Image.FromFile("black.jpg");
-                    black.Location = new Point(200, -200 + n);
+                    black.Location = new Point(200, -200 + n - black.Height * i);
                     Controls.Add(black);
 
                     break;
@@ -118,22 +232,22 @@ namespace WhiteTile
                 case 4:
                     white.Size = new Size(100, 200);
                     white.Image = Image.FromFile("white1.jpg");
-                    white.Location = new Point(400, -200 + n);
+                    white.Location = new Point(400, -200 + n - black.Height * i);
                     Controls.Add(white);
 
                     white2.Size = new Size(100, 200);
                     white2.Image = Image.FromFile("white1.jpg");
-                    white2.Location = new Point(200, -200 + n);
+                    white2.Location = new Point(200, -200 + n - black.Height * i);
                     Controls.Add(white2);
 
                     white3.Size = new Size(100, 200);
                     white3.Image = Image.FromFile("white1.jpg");
-                    white3.Location = new Point(300, -200 + n);
+                    white3.Location = new Point(300, -200 + n - black.Height * i);
                     Controls.Add(white3);
 
                     black.Size = new Size(100, 200);
                     black.Image = Image.FromFile("black.jpg");
-                    black.Location = new Point(100, -200 + n);
+                    black.Location = new Point(100, -200 + n - black.Height * i);
                     Controls.Add(black);
 
                     break;
@@ -141,59 +255,37 @@ namespace WhiteTile
 
             }
 
-           
-            /*
-            for (int i = 0; i < 3; i++)
-            {
-                /*
-                PictureBox pic2 = new PictureBox();
-                pic2.Size = new Size(100, 200); 
-                pic2.Location = new Point(pic2.Location.X + (i * 100), pic2.Location.Y);
-                //pic2.BackColor = Color.Black;
-                pic2.BackgroundImage = Image.FromFile("black.jpg");
-                black[i] = pic2;
-                Controls.Add(black[i]);
-                
-                black[i] = new PictureBox();
-                black[i].Size = new Size(80, 120);
-                black[i].Image = Image.FromFile("black.jpg");
-                black[i].BackgroundImage = Image.FromFile("black.jpg");
-                black[i].Location = new Point(black[i].Location.X + (i * 100), black[i].Location.Y);
-
-                white[i] = new PictureBox();
-                white[i].Size = new Size(80, 120);
-                white[i].Image = Image.FromFile("black.jpg");
-                white[i].BackgroundImage = Image.FromFile("black.jpg");
-                white[i].Location = new Point(black[i].Location.X + (i * 100), black[i].Location.Y);
-
-                green[i] = new PictureBox();
-                green[i].Size = new Size(80, 120);
-                green[i].Image = Image.FromFile("black.jpg");
-                green[i].BackgroundImage = Image.FromFile("black.jpg");
-                green[i].Location = new Point(black[i].Location.X + (i * 100), black[i].Location.Y);
+        }
+        */
 
 
-                Controls.Add(black[i]);
-                Controls.Add(white[i]);
-                Controls.Add(green[i]);
-            }*/
+        private void Row(int i)
+        {
+            Random c1 = new Random();
+            int c2;
+            c2 = c1.Next(1, 5);
+            int c3 = 1;
+            Box2(c3, i);
         }
 
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Random c1 = new Random();
-            int c;
-            c = c1.Next(0, 5);
-            Box(c, n);
-            n=n+100;
+            i = 0;
+           
+            
+            Row(i);
+            black[i].Location = new Point(400, y[i] + 100);
+            // white[i].Top += 100;
 
         }
 
+
+
         private void button1_Click(object sender, EventArgs e)
         {
-            с = 1;
-            Box(с,n);
+            c = 1;
+           // Box(c,n);
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -201,13 +293,12 @@ namespace WhiteTile
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            с = 3;
-            Box(с,n);
+            
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            с = 4;
-            Box(с,n);
+            
+        //Box(c,n);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
