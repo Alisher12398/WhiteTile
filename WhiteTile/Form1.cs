@@ -14,18 +14,18 @@ namespace WhiteTile
     public partial class Form1 : Form
     {
 
-        PictureBox[] white = new PictureBox[8];
-        PictureBox[] white2 = new PictureBox[8];
-        PictureBox[] white3 = new PictureBox[8];
-        PictureBox[] black = new PictureBox[8];
+        PictureBox[] white = new PictureBox[1000];
+        PictureBox[] white2 = new PictureBox[1000];
+        PictureBox[] white3 = new PictureBox[1000];
+        PictureBox[] black = new PictureBox[1000];
         PictureBox green = new PictureBox();
         int c;
-        int n;
+        int n=1;
         int x = 0;
         int i = 0;
         int y1 = 0;
         int y2 = -100;
-        int[] y = new int[12];
+        int[] y = new int[1000];
         int x2;
         int[] c3 = new int[1000];
 
@@ -44,9 +44,7 @@ namespace WhiteTile
         public void Case(int x, int i, int w, int h, int x1)
         {
             PictureBox pic2 = new PictureBox();
-            PictureBox pic4 = new PictureBox();
             PictureBox pic1 = new PictureBox();
-            PictureBox pic3 = new PictureBox();
 
             pic2.Size = new Size(w, h);
             pic2.Image = Image.FromFile("black.jpg");
@@ -67,10 +65,7 @@ namespace WhiteTile
         {
             y[i] = -200;
 
-            PictureBox pic2 = new PictureBox();
-            PictureBox pic4 = new PictureBox();
-            PictureBox pic1 = new PictureBox();
-            PictureBox pic3 = new PictureBox();
+          
             switch (c)
             {
 
@@ -113,7 +108,7 @@ namespace WhiteTile
             //white[i].Location = new Point(300, y[i]+x);
             white2[i].Location = new Point(100, y[i] + x);
             //white3[i].Location = new Point(100, y[i]+x);
-            x += 100;
+            x += 200;
 
         }
 
@@ -126,13 +121,18 @@ namespace WhiteTile
         private void timer1_Tick(object sender, EventArgs e)
         {
 
-            if (i == 0) Row(i);
-            i++;
-            if (i > 1)
-            { i = 1;
-               
-                Movee(i - 1, c3[i]);
+            Row(i);
+            n++;
+
+            textBox1.Text = n.ToString();
+
+            for (i=0; i<n-1; i++)
+            {
+                Movee(i, c3[i]);
+                textBox2.Text = i.ToString();
             }
+
+
         }
 
 
@@ -144,14 +144,7 @@ namespace WhiteTile
 
         private void button3_Click(object sender, EventArgs e)
         {
-            PictureBox pic1 = new PictureBox();
-            pic1.Size = new Size(100, 200);
-            pic1.Image = Image.FromFile("white1.jpg");
             
-            pic1.Top = 200;
-            pic1.Left = 100;
-            white[i] = pic1;
-            Controls.Add(white[i]);
         }
         
     }
