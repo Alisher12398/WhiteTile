@@ -24,10 +24,11 @@ namespace WhiteTile
         int x = 0;
         int i = 0;
         int y1 = 0;
-        int y2 = -100;
+        int y2 = 0;
         int[] y = new int[1000];
         int x2;
         int[] c3 = new int[1000];
+        int x3 = 0;
 
 
         public Form1()
@@ -41,48 +42,60 @@ namespace WhiteTile
 
         }
 
-        public void Case(int x, int i, int w, int h, int x1)
+        public void Case(int i, int w, int h, int x1)
         {
             PictureBox pic2 = new PictureBox();
             PictureBox pic1 = new PictureBox();
-
+            y[i] = -200;
             pic2.Size = new Size(w, h);
             pic2.Image = Image.FromFile("black.jpg");
-            pic2.Location = new Point(x1 * 100 + x, y[i]);
+            pic2.Location = new Point(x1 * 100-100, y[i]);
+            pic2.BorderStyle = BorderStyle.FixedSingle;
             black[i] = pic2;
             Controls.Add(black[i]);
+            black[i].Click += PictureBoxClick;
+        
 
             pic1.Size = new Size(w * 4, h);
             pic1.Image = Image.FromFile("white1.jpg");
-            pic1.Location = new Point(x, y[i]);
+            pic1.Location = new Point(0, y[i]);
+            pic1.BorderStyle = BorderStyle.FixedSingle;
             white2[i] = pic1;
             Controls.Add(white2[i]);
-
-
+            
         }
 
-        public void Box2(int c, int i)
-        {
-            y[i] = -200;
 
-          
+    private void PictureBoxClick(object sender, System.EventArgs e)
+    {
+        if (sender is PictureBox)
+        {
+            ((PictureBox)sender).Image = Image.FromFile("green.jpg");
+                y2++;
+                textBox1.Text = y2.ToString();
+        }
+    }
+
+    public void Box2(int c, int i)
+        {
+
             switch (c)
             {
 
                 case 1:
-                    Case(100, i, 100, 200, 1);
+                    Case(i, 100, 200, 1);
                     break;
 
                 case 2:
-                    Case(100, i, 100, 200, 2);
+                    Case(i, 100, 200, 2);
                     break;
 
                 case 3:
-                    Case(100, i, 100, 200, 3);
+                    Case(i, 100, 200, 3);
                     break;
 
                 case 4:
-                    Case(100, i, 100, 200, 4);
+                    Case(i, 100, 200, 4);
                     break;
 
 
@@ -90,10 +103,10 @@ namespace WhiteTile
 
         }
 
+        Random c1 = new Random();
 
         private void Row(int i)
         {
-            Random c1 = new Random();
             int c2;
             c2 = c1.Next(1, 5);
             Box2(c2, i);
@@ -103,12 +116,10 @@ namespace WhiteTile
 
         public void Movee(int i, int c2)
         {
-            textBox2.Text = c3[i].ToString();
-            black[i].Location = new Point(c3[i]*100, y[i] + x);
-            //white[i].Location = new Point(300, y[i]+x);
-            white2[i].Location = new Point(100, y[i] + x);
-            //white3[i].Location = new Point(100, y[i]+x);
-            x += 200;
+
+            black[i].Location = new Point(c3[i] * 100 - 100, y[i]);
+            white2[i].Location = new Point(0, y[i]);
+            y[i] += 200;
 
         }
 
@@ -121,32 +132,23 @@ namespace WhiteTile
         private void timer1_Tick(object sender, EventArgs e)
         {
 
+
             Row(i);
             n++;
 
-            textBox1.Text = n.ToString();
-
-            for (i=0; i<n-1; i++)
+            for (int j=0; j<n-1; j++)
             {
-                Movee(i, c3[i]);
-                textBox2.Text = i.ToString();
+                Movee(j, c3[j]);
             }
 
-
+            i++;   
         }
 
-
-        private void button2_Click(object sender, EventArgs e)
+        public void pictureBox_Click()
         {
-            timer1.Enabled = true;
+            y2++;
+            textBox1.Text = y2.ToString();
         }
-
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            
-        }
-        
     }
 }
 
