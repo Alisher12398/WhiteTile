@@ -13,7 +13,6 @@ namespace WhiteTile
 {
     public partial class Form1 : Form
     {
-
         PictureBox[] white = new PictureBox[1000];
         PictureBox[] white2 = new PictureBox[1000];
         PictureBox[] white3 = new PictureBox[1000];
@@ -26,9 +25,11 @@ namespace WhiteTile
         int y1 = 0;
         int y2 = 0;
         int[] y = new int[1000];
-        int x2;
+        int x2=0;
         int[] c3 = new int[1000];
-        int x3 = 0;
+        int x3 = 1;
+        int x4 = 0;
+        bool i3 = false;
 
 
         public Form1()
@@ -41,7 +42,7 @@ namespace WhiteTile
 
 
         }
-
+            
         public void Case(int i, int w, int h, int x1)
         {
             PictureBox pic2 = new PictureBox();
@@ -50,19 +51,20 @@ namespace WhiteTile
             pic2.Size = new Size(w, h);
             pic2.Image = Image.FromFile("black.jpg");
             pic2.Location = new Point(x1 * 100-100, y[i]);
-            pic2.BorderStyle = BorderStyle.FixedSingle;
+           // pic2.BorderStyle = BorderStyle.FixedSingle;
             black[i] = pic2;
             Controls.Add(black[i]);
             black[i].Click += PictureBoxClick;
-        
+            
+
 
             pic1.Size = new Size(w * 4, h);
-            pic1.Image = Image.FromFile("white1.jpg");
+            //pic1.Image = Image.FromFile("white1.jpg");
             pic1.Location = new Point(0, y[i]);
-            pic1.BorderStyle = BorderStyle.FixedSingle;
+           // pic1.BorderStyle = BorderStyle.FixedSingle;
             white2[i] = pic1;
             Controls.Add(white2[i]);
-            
+            white2[i].Click += PictureBoxClick2;
         }
 
 
@@ -70,13 +72,27 @@ namespace WhiteTile
     {
         if (sender is PictureBox)
         {
-            ((PictureBox)sender).Image = Image.FromFile("green.jpg");
+                ((PictureBox)sender).Image = Image.FromFile("green.jpg");
+                ((PictureBox)sender).Enabled = false;
+
                 y2++;
-                textBox1.Text = y2.ToString();
+                //textBox1.Text = y2.ToString();
         }
     }
 
-    public void Box2(int c, int i)
+
+        private void PictureBoxClick2(object sender, System.EventArgs e)
+        {
+            if (sender is PictureBox)
+            {
+                timer1.Enabled = false;
+                
+                MessageBox.Show("Вы проиграли. Счет: "+ y2);
+            }
+        }
+
+
+        public void Box2(int c, int i)
         {
 
             switch (c)
@@ -98,7 +114,6 @@ namespace WhiteTile
                     Case(i, 100, 200, 4);
                     break;
 
-
             }
 
         }
@@ -109,10 +124,13 @@ namespace WhiteTile
         {
             int c2;
             c2 = c1.Next(1, 5);
-            Box2(c2, i);
+            int i2 = i - 1;
+            
+                Box2(c2, i);
+                   
+            
             C2(i, c2);
         }
-
 
         public void Movee(int i, int c2)
         {
@@ -120,6 +138,7 @@ namespace WhiteTile
             black[i].Location = new Point(c3[i] * 100 - 100, y[i]);
             white2[i].Location = new Point(0, y[i]);
             y[i] += 200;
+         
 
         }
 
@@ -128,26 +147,53 @@ namespace WhiteTile
             c3[i] = c2;
             return c3[i];
         }
-            
-        private void timer1_Tick(object sender, EventArgs e)
+
+
+            private void timer1_Tick(object sender, EventArgs e)
         {
 
-
             Row(i);
-            n++;
 
-            for (int j=0; j<n-1; j++)
+            n++;
+           
+
+            if (y[i] > 1200)
             {
-                Movee(j, c3[j]);
+                x2++;
+               
             }
 
+                for (int j = x2; j < n - 1; j++)
+                {
+                    Movee(j, c3[j]);
+
+                    if (black[j].Enabled == true)
+                    {
+                        if (y[j] > 1000)
+                        {
+                            timer1.Enabled = false;
+
+                            MessageBox.Show("Вы проиграли. Счет: " + y2);
+                            Application.Restart();
+                        }
+                    }
+
+
+                }
+
+            
             i++;   
         }
 
         public void pictureBox_Click()
         {
             y2++;
-            textBox1.Text = y2.ToString();
+            //textBox1.Text = y2.ToString();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
         }
     }
 }
